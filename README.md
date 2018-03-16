@@ -5,12 +5,16 @@ objects, and Errors). This library is hosted publicly on NPM.
 
 ## Quickstart
 ```
-const log = require('noop-log')
+npm install @rearc/noop-log --save
+```
+
+```javascript
+const log = require('@rearc/noop-log')
 log.info('something happened', 'over here', {id: 42}, new Error('damn'))
 ```
 
 This outputs a single line JSON object with all the arguments above like:
-```
+```JSON
 {"level":"info","date":"2018-03-16T19:20:13.951Z","id":42,"inner":{"message":"damn","stack":"Error: damn\n    at repl:1:55\n    at sigintHandlersWrap (vm.js:22:35)\n    at sigintHandlersWrap (vm.js:73:12)\n    at ContextifyScript.Scr
 ipt.runInThisContext (vm.js:21:12)\n    at REPLServer.defaultEval (repl.js:340:29)\n    at bound (domain.js:280:14)\n    at REPLServer.runBound [as eval] (domain.js:293:12)\n    at REPLServer.<anonymous> (repl.js:538:10)\n    at emit
 One (events.js:101:20)\n    at REPLServer.emit (events.js:188:7)"},"msg":"something happened over here"}

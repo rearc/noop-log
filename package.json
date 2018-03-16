@@ -1,6 +1,6 @@
 {
   "name": "@rearc/noop-log",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple JSON logger for Noop components",
   "main": "index.js",
   "scripts": {

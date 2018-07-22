@@ -65,3 +65,21 @@ function log (...args) {
   event.msg = message
   console.log(JSON.stringify(event))
 }
+
+exports.requestLogger = function (req, res, next) {
+  req.startTime = new Date()
+
+  res.on('finish', () => {
+    const event = {
+      method: req.method,
+      url: req.url,
+      duration: new Date().getTime() - req.startTime.getTime(),
+      status: res.statusCode
+    }
+    let level = 'info'
+    if (res.statusCode >= 400) level = 'warn'
+    if (res.statusCode >= 500) level = 'error'
+    exports[level]('request', event)
+  })
+  next()
+}
